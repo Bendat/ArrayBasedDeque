@@ -1,6 +1,6 @@
 /**
  * Created by Ben Aherne.
- * Implements a circular non-resizable double ended queue that takes a generic object as it's parameter.
+ * Implements a circular non-resizable double ended queue using an array of generic objects.
  */
 public class ArrayBasedDeque<E> implements Deque<E> {
     private final int CAPACITY; // maxiumum deque size
@@ -9,8 +9,7 @@ public class ArrayBasedDeque<E> implements Deque<E> {
     private int rear; // the last elements position
 
     /**
-     * Constructs the ArrayBasedDeque object
-     *
+     * Constructs the ArrayBasedDeque object.
      * @param sizeOfDeque - the maximum number of objects that the array can store.
      */
     public ArrayBasedDeque(int sizeOfDeque) {
@@ -21,9 +20,8 @@ public class ArrayBasedDeque<E> implements Deque<E> {
     }
 
     /**
-     * Gets the first object in the deque without removing it
-     *
-     * @return the first object in the deque
+     * Gets the first object in the deque without removing it.
+     * @return the first object in the deque.
      */
     @Override
     public E first() {
@@ -31,8 +29,7 @@ public class ArrayBasedDeque<E> implements Deque<E> {
     }
 
     /**
-     * Gets the last object in the deque without removing it
-     *
+     * Gets the last object in the deque without removing it.
      * @return the last object in the array.
      */
     @Override
@@ -41,27 +38,24 @@ public class ArrayBasedDeque<E> implements Deque<E> {
     }
 
     /**
-     * Gets the position of the "first" object in the array
-     *
-     * @return int - the first position in the array
+     * Gets the position of the "first" object in the array.
+     * @return int - the first position in the array.
      */
     public int getFront() {
         return front;
     }
 
     /**
-     * Gets the position of the "last" object in the array
-     *
-     * @return int - the last position in the array
+     * Gets the position of the "last" object in the array.
+     * @return int - the last position in the array.
      */
     public int getRear() {
         return rear;
     }
 
     /**
-     * gets the arrays maximum size
-     *
-     * @return int - the arrays maximum size
+     * gets the arrays maximum size.
+     * @return int - the arrays maximum size.
      */
     public int getCapacity() {
         return CAPACITY;
@@ -69,9 +63,7 @@ public class ArrayBasedDeque<E> implements Deque<E> {
 
     /**
      * Produces a string of all the objects in the deque as converted with toString().
-     *
-     * @return a string representing all obj
-     * cts in the deque.
+     * @return a string representing all objects in the deque.
      */
     public String getArray() {
         String str = "";
@@ -83,7 +75,6 @@ public class ArrayBasedDeque<E> implements Deque<E> {
 
     /**
      * Inserts the parameter into the first position of the deque.
-     *
      * @param element - the object to be pushed into the front of the deque.
      */
     @Override
@@ -100,13 +91,12 @@ public class ArrayBasedDeque<E> implements Deque<E> {
 
     /**
      * Inserts the parameter into the last position of the deque.
-     *
      * @param element - the object to be pushed into the end of the deque.
      */
     @Override
     public void insertLast(E element) {
-        //Uses default rear position if the array is current position is empty,
-        //if that position contains an object the rear is moved forward one position.
+        /*Uses default rear position if the array is current position is empty,
+        if that position contains an object the rear is moved forward one position.*/
         if (dequeArray[rear] == null) {
             dequeArray[rear] = element;
         } else {
@@ -117,7 +107,6 @@ public class ArrayBasedDeque<E> implements Deque<E> {
 
     /**
      * Copies the first object of the deque and deletes the original.
-     *
      * @return object - the object at the deques front position.
      */
     @Override
@@ -128,9 +117,9 @@ public class ArrayBasedDeque<E> implements Deque<E> {
         E object = dequeArray[front];
         //deletes the object
         dequeArray[front] = null;
-        //If moving the front position forward would overlap the rear of the deque,
-        //and if that position is not null, the rear is moved forward one position.
-        //If the rear is null then the deque is now empty and the overlap is allowed.
+        /*If moving the front position forward would overlap the rear of the deque,
+        and if that position is not null, the rear is moved forward one position.
+        If the rear is null then the deque is now empty and the overlap is allowed.*/
         if (((front + 1) + CAPACITY) % CAPACITY == rear) {
             if (dequeArray[((front + 1) + CAPACITY) % CAPACITY] != null) {
                 rear = ((rear + 1) + CAPACITY) % CAPACITY;
@@ -142,7 +131,6 @@ public class ArrayBasedDeque<E> implements Deque<E> {
 
     /**
      * Copies the last object of the deque and deletes the original.
-     *
      * @return object - the object at the deques rear position.
      */
     @Override
@@ -150,8 +138,8 @@ public class ArrayBasedDeque<E> implements Deque<E> {
         if (isEmpty()) {
             throw new IndexOutOfBoundsException();
         }
-        //if the current position contains no objects, the deque is made one unit shorter and
-        //the rear is moved back one position
+        /*if the current position contains no objects, the deque is made one unit shorter and
+        the rear is moved back one position*/
         if (dequeArray[rear] == null) {
             rear = ((rear - 1) + CAPACITY) % CAPACITY;
         }
@@ -163,7 +151,6 @@ public class ArrayBasedDeque<E> implements Deque<E> {
 
     /**
      * Gets the number of objects currently in the deque. Distinct from its capacity.
-     *
      * @return int - the number ob objects in the deque.
      */
     @Override
@@ -173,7 +160,6 @@ public class ArrayBasedDeque<E> implements Deque<E> {
 
     /**
      * Checks whether or not the deque has an objects stored in it.
-     *
      * @return boolean - true for an empty deque false for a non-empty deque.
      */
     @Override

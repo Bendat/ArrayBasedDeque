@@ -43,21 +43,7 @@ public class TestArrayBasedDeque {
             deq.removeLast();
             System.out.println(deq.getArray() + " ------> front is: " + deq.getFront() + " // end is: " + deq.getRear());
         }
-        System.out.println("<---------------------Assignment 1 pdf retest--------------------->");
-        //tests the example behavior given on the pdf
-        deq.insertFirst(3);
-        System.out.println(deq.getArray() + " ------> front is: " + deq.getFront() + " // end is: " + deq.getRear());
-        deq.insertFirst(5);
-        System.out.println(deq.getArray() + " ------> front is: " + deq.getFront() + " // end is: " + deq.getRear());
-        deq.removeFirst();
-        System.out.println(deq.getArray() + " ------> front is: " + deq.getFront() + " // end is: " + deq.getRear());
-        deq.insertLast(7);
-        System.out.println(deq.getArray() + " ------> front is: " + deq.getFront() + " // end is: " + deq.getRear());
-        deq.removeFirst();
-        deq.removeLast();
-        System.out.println(deq.getArray() + " ------> front is: " + deq.getFront() + " // end is: " + deq.getRear());
-        //deq.removeFirst(); //should result in an outOfBounds exception
-        System.out.println(deq.isEmpty());
+
         System.out.println("<---------------------circular effect overlap test--------------------->");
         deq.insertLast(1);
         System.out.println(deq.getArray() + " ------> front is: " + deq.getFront() + " // end is: " + deq.getRear());
